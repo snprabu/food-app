@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetImagesService } from 'src/app/services/get-images.service'
 
 @Component({
   selector: 'app-promotional-offers',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromotionalOffersComponent implements OnInit {
 
-  constructor() { }
+  imageList: any;
+
+  constructor(private getImages: GetImagesService) { }
 
   ngOnInit(): void {
+    this.getImages.fetchImages().subscribe(res => {
+      this.imageList = res
+    })
   }
 
 }
